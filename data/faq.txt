@@ -1,0 +1,489 @@
+🔹 Section 1: LLM Fundamentals (1–25)
+
+1. What is a Large Language Model (LLM)?
+A neural network, typically Transformer-based, trained on massive text corpora to predict next tokens and model language distributions.
+
+2. What does “pretraining” mean?
+Self-supervised training on large unlabeled text to learn general language representations.
+
+3. What is fine-tuning?
+Additional training on domain-specific or task-specific data to specialize a pretrained model.
+
+4. What is self-supervised learning?
+Training using automatically generated labels from data itself (e.g., next-token prediction).
+
+5. What is next-token prediction?
+The task of predicting the probability distribution of the next token given previous tokens.
+
+6. What is a token?
+A discrete unit of text (word, subword, or character) mapped to an integer ID.
+
+7. Why not use full words as tokens?
+Vocabulary would be too large and fail on rare/unknown words.
+
+8. What is a vocabulary?
+A mapping from tokens to integer IDs.
+
+9. What is context length?
+Maximum number of tokens a model processes in one forward pass.
+
+10. What happens if input exceeds context length?
+It is truncated or processed in chunks.
+
+11. What is a parameter in an LLM?
+A trainable weight in the neural network.
+
+12. What is perplexity?
+Exponentiated cross-entropy; measures prediction uncertainty.
+
+13. Lower perplexity means?
+Better predictive performance.
+
+14. What is temperature in generation?
+A scaling factor applied to logits before softmax to control randomness.
+
+15. What is top-k sampling?
+Sampling only from the k highest-probability tokens.
+
+16. What is top-p (nucleus) sampling?
+Sampling from the smallest token set whose cumulative probability ≥ p.
+
+17. What is greedy decoding?
+Selecting the highest-probability token at each step.
+
+18. What is beam search?
+Maintains multiple candidate sequences during decoding.
+
+19. What is hallucination?
+Model generating plausible but incorrect information.
+
+20. Why do LLMs hallucinate?
+They optimize likelihood, not factual accuracy.
+
+21. What is alignment?
+Training models to follow human intent and safety norms.
+
+22. What is RLHF?
+Reinforcement Learning from Human Feedback.
+
+23. What is instruction tuning?
+Fine-tuning on instruction-response pairs.
+
+24. What is zero-shot learning?
+Performing tasks without task-specific examples.
+
+25. What is few-shot prompting?
+Providing a few examples in the prompt.
+
+🔹 Section 2: Tokenization & Embeddings (26–50)
+
+26. What is tokenization?
+Process of converting text into token IDs.
+
+27. What is Byte Pair Encoding (BPE)?
+A subword tokenization algorithm merging frequent character pairs.
+
+28. What is WordPiece?
+A likelihood-based subword tokenization method.
+
+29. What is Unigram tokenization?
+Probabilistic subword selection from a vocabulary.
+
+30. What is tiktoken?
+A fast tokenizer library for OpenAI models.
+
+31. What is an embedding?
+A dense vector representation of a token.
+
+32. Why use embeddings?
+Neural networks require numeric vector inputs.
+
+33. What is embedding dimension?
+Size of the token vector representation.
+
+34. What is positional encoding?
+Adds position information to embeddings.
+
+35. Why is positional encoding needed?
+Transformers lack inherent sequence order awareness.
+
+36. What is learned positional embedding?
+Trainable position vectors.
+
+37. What is sinusoidal positional encoding?
+Fixed deterministic position encoding using sine/cosine.
+
+38. What is OOV?
+Out-of-vocabulary tokens.
+
+39. How do subwords reduce OOV?
+Rare words split into known subword units.
+
+40. What is padding token?
+Used to equalize sequence lengths.
+
+41. What is attention mask?
+Prevents model from attending to padding tokens.
+
+42. What is causal mask?
+Prevents attention to future tokens.
+
+43. What is sliding window tokenization?
+Creating overlapping chunks from long text.
+
+44. What is stride in dataset preparation?
+Overlap size between consecutive windows.
+
+45. What is context-target pair?
+Input tokens predicting next tokens.
+
+46. Why shift targets by one token?
+For next-token prediction training.
+
+47. What is embedding matrix shape?
+(vocab_size, embedding_dim)
+
+48. Can embeddings be frozen?
+Yes, during fine-tuning.
+
+49. What is shared embedding?
+Using same matrix for input and output projection.
+
+50. Why share embeddings?
+Reduces parameters and improves consistency.
+
+🔹 Section 3: Attention & Transformers (51–80)
+
+51. What is attention?
+Mechanism that weights importance of tokens.
+
+52. What is self-attention?
+Tokens attend to other tokens in same sequence.
+
+53. What are Q, K, V?
+Query, Key, Value matrices derived from embeddings.
+
+54. Attention formula?
+softmax(QKᵀ / √dₖ)V
+
+55. Why scale by √dₖ?
+Prevents large dot-product magnitudes.
+
+56. What is multi-head attention?
+Parallel attention heads capturing different relations.
+
+57. What is head dimension?
+embedding_dim / num_heads.
+
+58. What is Transformer?
+Architecture using stacked self-attention layers.
+
+59. What is encoder-decoder model?
+Transformer variant for seq2seq tasks.
+
+60. What is decoder-only model?
+Autoregressive Transformer (e.g., GPT-style).
+
+61. What is residual connection?
+Adds input to layer output.
+
+62. Why residuals?
+Improves gradient flow.
+
+63. What is LayerNorm?
+Normalizes activations per token.
+
+64. What is feedforward network (FFN)?
+Position-wise MLP after attention.
+
+65. Why stack layers?
+To build hierarchical representations.
+
+66. What is attention complexity?
+O(n²) with sequence length.
+
+67. Why quadratic?
+All tokens attend to all tokens.
+
+68. What is Flash Attention?
+Memory-efficient attention implementation.
+
+69. What is sparse attention?
+Restricts attention to subset of tokens.
+
+70. What is cross-attention?
+Decoder attending to encoder outputs.
+
+71. What is masked attention?
+Causal attention preventing future leakage.
+
+72. What is Transformer block?
+Attention + FFN + residual + normalization.
+
+73. What is pre-norm vs post-norm?
+LayerNorm before or after sublayer.
+
+74. What is attention head specialization?
+Different heads learn different relations.
+
+75. Can attention capture long-range dependencies?
+Yes, directly.
+
+76. What is rotary positional embedding (RoPE)?
+Position encoding via rotation in embedding space.
+
+77. Why RoPE?
+Better extrapolation for long contexts.
+
+78. What is parameter sharing across layers?
+Reusing same weights in multiple layers.
+
+79. What is dropout in attention?
+Regularization technique.
+
+80. What is model depth?
+Number of Transformer layers.
+
+🔹 Section 4: Training & Optimization (81–120)
+
+81. What is loss function for LLMs?
+Cross-entropy loss.
+
+82. What is gradient descent?
+Optimization algorithm minimizing loss.
+
+83. What is Adam optimizer?
+Adaptive moment estimation optimizer.
+
+84. What is learning rate?
+Step size in optimization.
+
+85. What is learning rate warmup?
+Gradually increasing LR initially.
+
+86. What is weight decay?
+L2 regularization.
+
+87. What is gradient clipping?
+Prevents exploding gradients.
+
+88. What is batch size?
+Number of samples per update.
+
+89. What is epoch?
+One full pass over dataset.
+
+90. What is overfitting?
+Model memorizes training data.
+
+91. What is underfitting?
+Model fails to learn patterns.
+
+92. What is validation set?
+Used to tune hyperparameters.
+
+93. What is early stopping?
+Stopping training when validation loss worsens.
+
+94. What is mixed precision training?
+Using float16 + float32 for efficiency.
+
+95. What is gradient accumulation?
+Simulating large batch sizes.
+
+96. What is distributed training?
+Training across multiple GPUs.
+
+97. What is data parallelism?
+Split data across GPUs.
+
+98. What is model parallelism?
+Split model across GPUs.
+
+99. What is checkpointing?
+Saving model states.
+
+100. What is fine-tuning with LoRA?
+Low-rank adaptation of weights.
+
+101. What is PEFT?
+Parameter-efficient fine-tuning.
+
+102. What is quantization?
+Reducing precision of weights.
+
+103. What is 8-bit quantization?
+Weights stored in int8.
+
+104. What is pruning?
+Removing less important weights.
+
+105. What is knowledge distillation?
+Training smaller student model from teacher.
+
+106. What is catastrophic forgetting?
+Losing previous knowledge during fine-tuning.
+
+107. What is curriculum learning?
+Training on progressively harder data.
+
+108. What is synthetic data?
+AI-generated training data.
+
+109. What is evaluation metric for text generation?
+BLEU, ROUGE, perplexity.
+
+110. What is F1 score?
+Harmonic mean of precision and recall.
+
+111. What is precision?
+True positives / predicted positives.
+
+112. What is recall?
+True positives / actual positives.
+
+113. What is confusion matrix?
+Classification performance matrix.
+
+114. What is hyperparameter tuning?
+Optimizing non-trainable parameters.
+
+115. What is seed setting?
+Ensuring reproducibility.
+
+116. What is deterministic training?
+Controlling randomness.
+
+117. What is training instability?
+Diverging loss.
+
+118. What causes exploding gradients?
+Large weight updates.
+
+119. What causes vanishing gradients?
+Repeated small multiplications.
+
+120. Why monitor GPU memory?
+Avoid OOM errors.
+
+🔹 Section 5: Deployment & Agents (121–160)
+
+121. What is model serving?
+Deploying model via API.
+
+122. What is latency?
+Response time per request.
+
+123. What is throughput?
+Requests processed per second.
+
+124. What is batching in inference?
+Processing multiple inputs together.
+
+125. What is streaming response?
+Sending tokens incrementally.
+
+126. What is prompt engineering?
+Designing effective prompts.
+
+127. What is system prompt?
+Defines model behavior globally.
+
+128. What is an AI agent?
+LLM + tools + memory + reasoning loop.
+
+129. What is tool calling?
+Model invoking external functions.
+
+130. What is RAG?
+Retrieval-Augmented Generation.
+
+131. Why use RAG?
+Injects factual context.
+
+132. What is vector database?
+Stores embeddings for similarity search.
+
+133. What is cosine similarity?
+Vector similarity metric.
+
+134. What is embedding search?
+Retrieving semantically similar text.
+
+135. What is chunking?
+Splitting documents for indexing.
+
+136. What is memory in agents?
+Stored conversation context.
+
+137. What is short-term memory?
+Current conversation window.
+
+138. What is long-term memory?
+Persistent storage.
+
+139. What is tool latency issue?
+Slow API responses.
+
+140. What is fallback strategy?
+Backup method if tool fails.
+
+141. What is rate limiting?
+Restricting API calls.
+
+142. What is API key security?
+Protecting credentials.
+
+143. What is containerization?
+Packaging app with dependencies (Docker).
+
+144. What is CI/CD?
+Automated testing and deployment.
+
+145. What is versioning model weights?
+Tracking model updates.
+
+146. What is observability?
+Monitoring logs and metrics.
+
+147. What is prompt injection?
+Malicious instruction in input.
+
+148. How mitigate prompt injection?
+Validate and isolate instructions.
+
+149. What is guardrail?
+Safety constraint layer.
+
+150. What is human-in-the-loop?
+Human oversight system.
+
+151. What is caching?
+Storing responses for reuse.
+
+152. What is cold start?
+Initial load latency.
+
+153. What is autoscaling?
+Dynamic resource allocation.
+
+154. What is edge deployment?
+Running model on device.
+
+155. What is model compression?
+Reducing size for deployment.
+
+156. What is monitoring drift?
+Detecting performance degradation.
+
+157. What is A/B testing?
+Comparing two model versions.
+
+158. What is rollback strategy?
+Reverting to previous version.
+
+159. What is SLA?
+Service Level Agreement.
+
+160. What is logging?
+Recording system events.

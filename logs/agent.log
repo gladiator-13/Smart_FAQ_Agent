@@ -1,0 +1,79 @@
+2026-02-22 15:55:53,420 | INFO | User Query: Hii
+2026-02-22 15:55:53,458 | INFO | No relevant FAQ retrieved.
+2026-02-22 15:56:00,657 | INFO | User Query: What are LLMs?
+2026-02-22 15:56:00,657 | INFO | Retrieved Context: 53. What are Q, K, V?
+Query, Key, Value matrices derived from embeddings.
+
+81. What is loss function for LLMs?
+Cross-entropy loss.
+
+1. What is a Large Language Model (LLM)?
+A neural network, typically Transformer-based, trained on massive text corpora to predict next tokens and model language distributions.
+2026-02-22 15:56:00,657 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 15:56:27,009 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-22 15:56:27,195 | INFO | LLM Response: A neural network, typically Transformer-based, trained on massive text corpora to predict next tokens and model language distributions.
+2026-02-22 15:56:31,859 | INFO | User Query: What is Byte Pair Encoding (BPE)?
+2026-02-22 15:56:31,859 | INFO | Retrieved Context: 27. What is Byte Pair Encoding (BPE)?
+A subword tokenization algorithm merging frequent character pairs.
+
+37. What is sinusoidal positional encoding?
+Fixed deterministic position encoding using sine/cosine.
+
+76. What is rotary positional embedding (RoPE)?
+Position encoding via rotation in embedding space.
+2026-02-22 15:56:31,859 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 15:56:54,244 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-22 15:56:54,244 | INFO | LLM Response: A subword tokenization algorithm merging frequent character pairs.
+2026-02-22 15:57:04,375 | INFO | User Query: What is your context size?
+2026-02-22 15:57:04,375 | INFO | Retrieved Context: 9. What is context length?
+Maximum number of tokens a model processes in one forward pass.
+
+10. What happens if input exceeds context length?
+It is truncated or processed in chunks.
+
+88. What is batch size?
+Number of samples per update.
+2026-02-22 15:57:04,375 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 15:57:19,377 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-22 15:57:19,384 | INFO | LLM Response: I do not have information about that.
+2026-02-22 15:57:32,184 | INFO | Session terminated by user.
+2026-02-22 16:35:20,099 | INFO | User Query: Hii
+2026-02-22 16:36:39,041 | INFO | User Query: Hii
+2026-02-22 16:36:39,115 | INFO | No relevant FAQ retrieved.
+2026-02-22 16:36:44,295 | INFO | User Query: What are LLms?
+2026-02-22 16:36:44,296 | INFO | Retrieved Context: 53. What are Q, K, V?
+Query, Key, Value matrices derived from embeddings.
+
+81. What is loss function for LLMs?
+Cross-entropy loss.
+
+1. What is a Large Language Model (LLM)?
+A neural network, typically Transformer-based, trained on massive text corpora to predict next tokens and model language distributions.
+2026-02-22 16:36:44,296 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 16:37:09,171 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-02-22 16:37:09,225 | ERROR | LLM Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-02-22 16:37:21,191 | INFO | User Query: Byte pair encoding?
+2026-02-22 16:37:21,192 | INFO | Retrieved Context: 27. What is Byte Pair Encoding (BPE)?
+A subword tokenization algorithm merging frequent character pairs.
+
+34. What is positional encoding?
+Adds position information to embeddings.
+
+37. What is sinusoidal positional encoding?
+Fixed deterministic position encoding using sine/cosine.
+2026-02-22 16:37:21,192 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 16:37:25,001 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-22 16:37:25,009 | INFO | LLM Response: A subword tokenization algorithm merging frequent character pairs.
+2026-02-22 16:37:29,444 | INFO | User Query: LLMs?
+2026-02-22 16:37:29,445 | INFO | Retrieved Context: 81. What is loss function for LLMs?
+Cross-entropy loss.
+2026-02-22 16:37:29,445 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 16:37:31,507 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-02-22 16:37:31,507 | ERROR | LLM Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-02-22 16:37:46,165 | INFO | User Query: tiktoken?
+2026-02-22 16:37:46,167 | INFO | Retrieved Context: 30. What is tiktoken?
+A fast tokenizer library for OpenAI models.
+2026-02-22 16:37:46,167 | INFO | AFC is enabled with max remote calls: 10.
+2026-02-22 16:38:03,044 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-22 16:38:03,046 | INFO | LLM Response: A fast tokenizer library for OpenAI models.
+2026-02-22 16:38:06,151 | INFO | Session terminated by user.
