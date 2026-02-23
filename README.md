@@ -40,25 +40,26 @@ Response
 ---
 
 ## Project Structure
+```
+
 smart-faq-agent/
 │
 ├── agent/
-│   ├── llm.py # Google ADK / Gemini integration
-│   ├── logger.py # Logging configuration
-│   ├── memory.py # Memory abstraction layer
-│   ├── prompt.py # Prompt construction logic
+│   ├── llm.py              # Google ADK / Gemini integration
+│   ├── logger.py           # Logging configuration
+│   ├── memory.py           # Memory abstraction layer
+│   ├── prompt.py           # Prompt construction logic
 │   │
 │   └── retriever/
-│       ├── lexical.py # Keyword-based retrieval
-│       └── init.py
+│       ├── lexical.py      # Keyword-based retrieval
+│       └── __init__.py
 │
-├── app.py # Entry point
+├── app.py                  # Entry point
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
-
----
+ 
+```
 
 ## Core Features
 
