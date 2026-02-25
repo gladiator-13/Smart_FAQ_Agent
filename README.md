@@ -54,15 +54,13 @@ The system includes an evaluation module that measures:
 - Mean Reciprocal Rank (MRR)
 This allows empirical comparison between retrieval strategies.
 
- ```
-
 | Mode     | Recall@1 | Recall@3 | MRR  |
 |----------|:--------:|:--------:|:----:|
 | Lexical  |  0.200   |  0.200   | 0.200|
 | Semantic |  0.600   |  0.600   | 0.600|
 | Hybrid   |  0.600   |  0.600   | 0.600|
 
-```
+---
 
 ## Project Structure
 ```
