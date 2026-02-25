@@ -24,6 +24,7 @@ The system is designed to demonstrate proper retrieval architecture design rathe
 ---
 
 ## Retrieval Architecture
+```
 
 User Query
    ↓
@@ -42,6 +43,7 @@ Final Score = α × Semantic Similarity + β × Lexical Overlap
 
 This enables fine-grained discrimination between closely related concepts (e.g., pretraining vs fine-tuning). 
 
+```
 ---
 
 ## Evaluation Framework
@@ -54,11 +56,11 @@ This allows empirical comparison between retrieval strategies.
 
  ```
 
-| Mode | Recall@1 | Recall@3 | MRR |
-| :--- | :---:| :---: | ---: |
-| Lexical | 0.200 | 0.200 | 0.200 | 
-| Semantic | 0.600 | 0.600 | 0.600 |
-| Hybrid | 0.600 | 0.600 | 0.600 |
+| Mode     | Recall@1 | Recall@3 | MRR  |
+|----------|:--------:|:--------:|:----:|
+| Lexical  |  0.200   |  0.200   | 0.200|
+| Semantic |  0.600   |  0.600   | 0.600|
+| Hybrid   |  0.600   |  0.600   | 0.600|
 
 ```
 
