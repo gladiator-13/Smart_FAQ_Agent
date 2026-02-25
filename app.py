@@ -3,10 +3,10 @@ from agent.prompt import build_prompt
 from agent.llm import generate_response
 from agent.memory import Memory
 from agent.logger import logger
+from agent.data_loader import load_faq_from_txt
 
 #Read the FAQ file
-with open("data/faq.txt", "r", encoding="utf-8") as file:
-    faq_content = file.read()
+faq_data = load_faq_from_txt("data/faq.txt")
 
 memory = Memory()
 
@@ -20,17 +20,20 @@ while True:
 
     logger.info(f"User Query: {user_input}")
 
-    retrieval_mode = "lexical"
-    retriever = get_retriever(mode=retrieval_mode)
+    retrieval_mode = "hybrid"
+    retriever = get_retriever(mode=retrieval_mode, faq_data=faq_data)
 
-    relevant = retriever(user_input, faq_content)
+    relevant = retriever(user_input)
+    print("Retrieved: ", relevant)
 
     if not relevant:
         logger.info("No relevant FAQ retrieved.")
         print("LLM: I do not have information about that.")
         continue
 
-    context = "\n\n".join(relevant)
+    context = "\n\n".join(
+    [f"Q: {item['question']}\nA: {item['answer']}" for item in relevant]
+    )
     logger.info(f"Retrieved Context: {context}")
 
     prompt = build_prompt(context, user_input)

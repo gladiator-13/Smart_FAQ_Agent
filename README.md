@@ -1,43 +1,66 @@
-# Smart FAQ Agent (Google ADK + Google AI Studio)
+# Smart FAQ Agent — Hybrid Retrieval RAG System
 
-A modular AI-powered FAQ Agent built using **Google ADK** and **Google AI Studio (Gemini models)**.
+A modular Retrieval-Augmented Generation (RAG) system implementing and benchmarking multiple retrieval strategies for FAQ-based question answering.
 
-This project demonstrates the step-by-step evolution of an AI agent:
-- Lexical Retrieval (baseline)
-- LLM-powered response generation
-- Modular agent architecture
-- Memory scaffolding
-- Structured prompt engineering
+This project explores the architectural trade-offs between:
+- Lexical retrieval (token overlap)
+- Semantic retrieval (dense embeddings)
+- Hybrid retrieval (combined scoring)
+- Evaluation using IR metrics (Recall@k, MRR)
 
 ---
 
 ## Project Overview
 
 Smart FAQ Agent answers user queries by:
+1. Retrieving relevant FAQ entries using configurable retrieval modes:
+   - Lexical
+   - Semantic (SentenceTransformer embeddings)
+   - Hybrid (weighted semantic + lexical scoring)
+2. Passing top-k retrieved context to an LLM (Google Gemini)
+3. Generating structured, context-constrained responses
+The system is designed to demonstrate proper retrieval architecture design rather than simple API usage.
 
-1. Retrieving relevant FAQ entries using lexical similarity
-2. Passing contextual information to a Google Gemini LLM
-3. Generating intelligent, structured responses
+---
 
-This project focuses on building AI agents **correctly and modularly**, not just calling an API.
+## Retrieval Architecture
+
+User Query
+   ↓
+Retriever (Lexical / Semantic / Hybrid)
+   ↓
+Top-k Ranked FAQ Candidates
+   ↓
+Prompt Builder
+   ↓
+LLM (Gemini)
+   ↓
+Final Answer
+
+Hybrid Scoring Formula:
+Final Score = α × Semantic Similarity + β × Lexical Overlap
+
+This enables fine-grained discrimination between closely related concepts (e.g., pretraining vs fine-tuning). 
 
 ---
 
-## Architecture
+## Evaluation Framework
 
-User Query  
-   ↓  
-Lexical Retriever (`agent/retriever/lexical.py`)  
-   ↓  
-Prompt Builder (`agent/prompt.py`)  
-   ↓  
-LLM Module (`agent/llm.py`)  
-   ↓  
-Response  
-   ↓  
-(Optional) Memory Layer (`agent/memory.py`)  
+The system includes an evaluation module that measures:
+- Recall@1
+- Recall@3
+- Mean Reciprocal Rank (MRR)
+This allows empirical comparison between retrieval strategies.
 
----
+ ```
+
+| Mode | Recall@1 | Recall@3 | MRR |
+| :--- | :---:| :---: | ---: |
+| Lexical | 0.200 | 0.200 | 0.200 | 
+| Semantic | 0.600 | 0.600 | 0.600 |
+| Hybrid | 0.600 | 0.600 | 0.600 |
+
+```
 
 ## Project Structure
 ```
@@ -49,12 +72,18 @@ smart-faq-agent/
 │   ├── logger.py           # Logging configuration
 │   ├── memory.py           # Memory abstraction layer
 │   ├── prompt.py           # Prompt construction logic
+|   ├── dataloader.py       
 │   │
 │   └── retriever/
 │       ├── lexical.py      # Keyword-based retrieval
-│       └── __init__.py
+│       ├── __init__.py
+|       ├── semantic.py
+|       └── hybrid.py
 │
 ├── app.py                  # Entry point
+├── evaluation_data.py
+├── evaluation_runner.py
+├── evaluator.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -63,22 +92,22 @@ smart-faq-agent/
 
 ## Core Features
 
-- Modular agent architecture
-- Keyword-based FAQ retrieval
-- Prompt templating
-- Google Gemini LLM integration
-- Environment-based API key handling
-- Clean separation of responsibilities
+- Modular retrieval abstraction
+- Dense embedding search (SentenceTransformers)
+- Hybrid retrieval scoring
+- Evaluation using standard IR metrics
+- Context-constrained LLM generation
+- Clean project structuring and separation of concerns
 
 ---
 
 ## Tech Stack
 
 - Python
-- Google ADK
-- Google AI Studio (Gemini)
+- SentenceTransformers (all-MiniLM-L6-v2)
+- Google Gemini (via Google AI Studio)
+- scikit-learn
 - python-dotenv
-- Logging module
 
 ---
 
@@ -94,21 +123,15 @@ Run the app: python app.py
 
 ---
 
-## Current Limitations
+## Key Learnings
 
-- Retrieval is lexical (exact/near keyword matching)
-- No semantic embedding search yet
-- No vector database integration
-
----
-
-## Roadmap (Next Steps)
-
-- Implement embedding-based semantic search
-- Integrate vector database (FAISS / Chroma)
-- Add conversational memory buffer
-- Introduce evaluation metrics
-- Deploy via FastAPI
+This project demonstrates:
+1. Retrieval system design
+2. Hybrid scoring strategies
+3. Embedding limitations and trade-offs
+4. Information Retrieval metrics
+5. Modular AI agent architecture
+6. Proper Git version control workflow
 
 ---
 
@@ -124,5 +147,5 @@ This project emphasizes:
 ---
 
 ## Author
-Built as part of a structured journey toward advanced AI Agent development using Google ADK.
+Built as part of a structured progression into retrieval systems and AI agent architecture.
 
